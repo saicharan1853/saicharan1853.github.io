@@ -1,17 +1,94 @@
-
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Map Marker Code</title>
-    <link rel="stylesheet" href="swlab3_ass3.css">
-</head>
-<body>
-    <div id="map"></div>
-    <script async
-    src="https://maps.gomaps.pro/maps/api/js?key=AlzaSyxyC5xNCHsh6LqqjyGDyRoCGVd9_HnXpGz&callback=initMap">
-</script>
-    <script src="swlab_ass3.js"></script> 
-</body>
+<html>
+  <head>
+    <title>Add a Map with Markers using HTML</title>
+
+    <!-- Adding Bootstrap for styling -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <style>
+      #map {
+        height: 500px;
+        width: 100%;
+      }
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h3 class="text-center">Google Map with Markers</h3>
+      <div id="map"></div>
+    </div>
+      <gmp-map
+  center="43.4142989,-124.2301242"
+  zoom="4"
+  map-id="DEMO_MAP_ID"
+  style="height: 400px"
+>
+  <gmp-advanced-marker
+    position="37.4220656,-122.0840897"
+    title="Mountain View, CA"
+  ></gmp-advanced-marker>
+  <gmp-advanced-marker
+    position="47.648994,-122.3503845"
+    title="Seattle, WA"
+  ></gmp-advanced-marker>
+</gmp-map>
+
+    <script>
+      // Initialize and add the map
+      function initMap() {
+        // The location of VNIT Nagpur
+        var vnitLocation = { lat: 21.1236, lng: 79.0511 };
+
+        // The map, centered at VNIT Nagpur
+        var map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 14,
+          center: vnitLocation,
+        });
+
+        // The marker, positioned at VNIT Nagpur
+        var marker = new google.maps.Marker({
+          position: vnitLocation,
+          map: map,
+          title: "VNIT Nagpur",
+        });
+
+        // Add an information window
+        var infoWindow = new google.maps.InfoWindow({
+          content: "<h5>VNIT Nagpur</h5><p>Visvesvaraya National Institute of Technology</p>",
+        });
+
+        // Open info window on marker click
+        marker.addListener("click", function () {
+          infoWindow.open(map, marker);
+        });
+
+        // Add markers dynamically on click
+        map.addListener("click", function (event) {
+          addMarker(event.latLng, map);
+        });
+
+        // Function to add a new marker
+        function addMarker(location, map) {
+          new google.maps.Marker({
+            position: location,
+            map: map,
+          });
+        }
+      }
+    </script>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Google Maps API -->
+    <script async defer  src="https://maps.gomaps.pro/maps/api/js?key=AlzaSyxyC5xNCHsh6LqqjyGDyRoCGVd9_HnXpGz&callback=initMap"></script>
+  </body>
 </html>
