@@ -22,7 +22,7 @@
   </head>
   <body>
     <div class="container">
-      <h3 class="text-center">Google Map with Custom Marker and Dynamic Markers</h3>
+      <h3 class="text-center">Google Map with Custom Marker and Dynamic Messages</h3>
       <div id="map"></div>
     </div>
 
@@ -64,14 +64,28 @@
 
         // Add markers dynamically on click
         map.addListener("click", function (event) {
-          addMarker(event.latLng, map);
+          addMarkerWithMessage(event.latLng, map);
         });
 
-        // Function to add a new marker at a clicked location
-        function addMarker(location, map) {
-          new google.maps.Marker({
+        // Function to add a new marker at a clicked location with a user message
+        function addMarkerWithMessage(location, map) {
+          // Prompt user for the message for the marker
+          var message = prompt("Enter a message for this marker:");
+
+          // Create the new marker
+          var newMarker = new google.maps.Marker({
             position: location,
             map: map,
+          });
+
+          // Create an info window for the new marker with the user's message
+          var newInfoWindow = new google.maps.InfoWindow({
+            content: message ? message : "No message entered.",
+          });
+
+          // Add click listener to show the message when marker is clicked
+          newMarker.addListener("click", function () {
+            newInfoWindow.open(map, newMarker);
           });
         }
       }
@@ -83,6 +97,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <!-- Google Maps API -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AlzaSyxyC5xNCHsh6LqqjyGDyRoCGVd9_HnXpGz&callback=initMap"></script>
+    <script async defer  src="https://maps.gomaps.pro/maps/api/js?key=AlzaSyxyC5xNCHsh6LqqjyGDyRoCGVd9_HnXpGz&callback=initMap"></script>
   </body>
 </html>
