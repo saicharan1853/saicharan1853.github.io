@@ -1,11 +1,9 @@
-<h1>HELLO WORLD</h1>
-
-<iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ10TW0nP5UxaLb8KA_mu9KGe1Iq8uUKOPGyRzc4xspdlyvAYz9adEqtYBaVoxOQM4-QIGLu4P4SgX-/pubchart?oid=477801809&amp;format=interactive"></iframe>
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Add a Map with Markers using HTML</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Google Map with Marker and Embedded Chart</title>
 
     <!-- Adding Bootstrap for styling -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -23,25 +21,18 @@
     </style>
   </head>
   <body>
+    <h1 class="text-center">HELLO WORLD</h1>
+
+    <!-- Embed Google Spreadsheet Chart -->
+    <div class="text-center my-4">
+      <iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ10TW0nP5UxaLb8KA_mu9KGe1Iq8uUKOPGyRzc4xspdlyvAYz9adEqtYBaVoxOQM4-QIGLu4P4SgX-/pubchart?oid=477801809&amp;format=interactive"></iframe>
+    </div>
+
+    <!-- Google Map Section -->
     <div class="container">
       <h3 class="text-center">Google Map with Markers</h3>
       <div id="map"></div>
     </div>
-      <gmp-map
-  center="43.4142989,-124.2301242"
-  zoom="4"
-  map-id="DEMO_MAP_ID"
-  style="height: 400px"
->
-  <gmp-advanced-marker
-    position="37.4220656,-122.0840897"
-    title="Mountain View, CA"
-  ></gmp-advanced-marker>
-  <gmp-advanced-marker
-    position="47.648994,-122.3503845"
-    title="Seattle, WA"
-  ></gmp-advanced-marker>
-</gmp-map>
 
     <script>
       // Initialize and add the map
@@ -92,7 +83,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <!-- Google Maps API -->
-    <script async defer  src="https://maps.gomaps.pro/maps/api/js?key=AlzaSyxyC5xNCHsh6LqqjyGDyRoCGVd9_HnXpGz&callback=initMap"></script>
+    <!-- Correct Google Maps API script -->
+    <script async defer src="https://maps.gomaps.pro/maps/api/js?key=AlzaSyxyC5xNCHsh6LqqjyGDyRoCGVd9_HnXpGz&callback=initMap"></script>
   </body>
 </html>
