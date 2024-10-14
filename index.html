@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Google Map with Marker and Embedded Chart</title>
+    <title>Google Map with Custom Marker and Click Events</title>
 
     <!-- Adding Bootstrap for styling -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -21,16 +21,8 @@
     </style>
   </head>
   <body>
-    <h1 class="text-center">HELLO WORLD</h1>
-
-    <!-- Embed Google Spreadsheet Chart -->
-    <div class="text-center my-4">
-      <iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ10TW0nP5UxaLb8KA_mu9KGe1Iq8uUKOPGyRzc4xspdlyvAYz9adEqtYBaVoxOQM4-QIGLu4P4SgX-/pubchart?oid=477801809&amp;format=interactive"></iframe>
-    </div>
-
-    <!-- Google Map Section -->
     <div class="container">
-      <h3 class="text-center">Google Map with Markers</h3>
+      <h3 class="text-center">Google Map with Custom Marker and Dynamic Markers</h3>
       <div id="map"></div>
     </div>
 
@@ -46,19 +38,26 @@
           center: vnitLocation,
         });
 
-        // The marker, positioned at VNIT Nagpur
+        // Custom icon for the marker
+        var customIcon = {
+          url: "https://cdn.iconscout.com/icon/free/png-256/university-building-1617011-1376905.png", // Example URL for a university icon
+          scaledSize: new google.maps.Size(40, 40), // Scaled size of the icon
+        };
+
+        // The marker, positioned at VNIT Nagpur with a custom icon
         var marker = new google.maps.Marker({
           position: vnitLocation,
           map: map,
+          icon: customIcon,
           title: "VNIT Nagpur",
         });
 
-        // Add an information window
+        // Add an information window (caption)
         var infoWindow = new google.maps.InfoWindow({
           content: "<h5>VNIT Nagpur</h5><p>Visvesvaraya National Institute of Technology</p>",
         });
 
-        // Open info window on marker click
+        // Open info window when marker is clicked
         marker.addListener("click", function () {
           infoWindow.open(map, marker);
         });
@@ -68,7 +67,7 @@
           addMarker(event.latLng, map);
         });
 
-        // Function to add a new marker
+        // Function to add a new marker at a clicked location
         function addMarker(location, map) {
           new google.maps.Marker({
             position: location,
@@ -83,7 +82,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <!-- Correct Google Maps API script -->
-    <script async defer src="https://maps.gomaps.pro/maps/api/js?key=AlzaSyxyC5xNCHsh6LqqjyGDyRoCGVd9_HnXpGz&callback=initMap"></script>
+    <!-- Google Maps API -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AlzaSyxyC5xNCHsh6LqqjyGDyRoCGVd9_HnXpGz&callback=initMap"></script>
   </body>
 </html>
